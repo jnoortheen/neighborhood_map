@@ -1,3 +1,15 @@
+Neighborhood Map:
+=================
+    A responsive map application using Google Maps JS API.
+
+Use:
+======
+    -   search any location using google autocomplete service.
+    -   click on map to create marker.
+    -   Wikipedia's open search API is used to get info about the place. This can be viewed by clicking on the marker.
+    -   Markers are stored locally and retrieved.
+    -   Filter the marker list using the same input field
+    -   Zoom to the markers location when clicked
 Tech:
 =============
 1. Knockout.js
