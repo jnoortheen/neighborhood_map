@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1" />
+
+    <title>Neighborhood Map Application</title>
+    <link href="app.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="searchContainer">
+        <!--input field-->
+        <div class="searchBoxContainer">
+            <div class="inpContainer">
+                <input id="searchInput" class="shadowBox" type="search" data-bind="value: searchText, valueUpdate: 'afterkeydown'" />
+            </div>
+            <!--left side switch controls -->
+            <div class="shadowBox controls leftDiv blueDiv">
+                <div class="control" data-bind="toggleClick: showMarkersDiv, css: {enabled: showMarkersDiv}, click: bindGoogleAutoComplete" title="Show/Hide Markers List">
+                    <i class="icon-pin" aria-hidden="true"></i>
+                </div>
+                <div class="control" data-bind="toggleClick: enableMapClickMarker, css: {enabled: enableMapClickMarker}, click: showMapClickSnackBarMsg" title="Enable Marker creation on map click">
+                    <i class="icon-one-finger-click" aria-hidden="true"></i>
+                </div>
+            </div>
+            <!--right side controls-->
+            <div class="rightDiv">
+                <div class="clearBtn control" data-bind="click: clearInpFld">
+                    <i class="icon-cross" aria-hidden="true"></i>
+                </div>
+            </div>
+        </div>
+        <!--markers list-->
+        <div class="markersDiv" data-bind="visible: showMarkersDiv">
+            <ul class="search-ac" data-bind="foreach: filteredMarkers">
+                <li>
+                    <div class="markedLocations" data-bind="click: $parent.gotoMarkerLocation">
+                        <span data-bind="text: locationName"></span>
+                        <span class="delete" data-bind="click: $parent.removeMarker">X</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div id="snackbar">Some text some message..</div>
+    <div id="mapdiv">
+    </div>
+    <script src="app.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDAflvhJOU6EjEO98DTBatDcmz7JoNCpJc&libraries=places&callback=initMap" async defer></script>
+</body>
+
+</html>

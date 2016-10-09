@@ -1,0 +1,240 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    /* Prevent scroll on narrow devices */
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+#mapdiv {
+    height: 100%;
+    width: 100%;
+}
+
+.searchContainer {
+    width: 50%;
+    z-index: 1;
+    position: absolute;
+    right: 3vh;
+    top: 2vh;
+}
+
+@media screen and (max-width: 850px) {
+    .searchContainer {
+        width: 65%;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .searchContainer {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .searchContainer {
+        width: 90%;
+    }
+}
+
+.shadowBox {
+    margin-top: 10px;
+    border: 1px solid transparent;
+    border-radius: 2px 0 0 2px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    height: 32px;
+    outline: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.greyDiv {
+    color: grey;
+    background-color: lightgrey;
+}
+
+.blueDiv {
+    color: grey;
+    background-color: #4d90fe;
+}
+
+.clearBtn {
+    margin-top: 1.1vh;
+    height: 32px;
+    padding: 1ch;
+}
+
+.clearBtn i {
+    font-size: smaller;
+}
+
+.clearBtn:hover {
+    color: black;
+}
+
+#searchInput {
+    padding: 0 25px 0 60px;
+    background-color: #fff;
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 300;
+    text-overflow: ellipsis;
+    width: 100%;
+}
+
+#searchInput:focus {
+    border-color: #4d90fe;
+}
+
+.controls {
+    padding: 1vh;
+    display: inline;
+}
+
+.leftDiv {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.rightDiv {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.control {
+    display: inline-block;
+    font-family: Roboto;
+    font-size: larger;
+    font-weight: 300;
+    color: grey;
+}
+
+.control:hover {
+    cursor: pointer;
+}
+
+.enabled {
+    color: white;
+}
+
+.markersDiv {
+    display: block;
+}
+
+.search-ac {
+    display: block;
+    position: absolute;
+    top: 47px;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    background: #fdfdfd;
+    border: 1px solid;
+    border-color: #cbcfe2 #c8cee7 #c4c7d7;
+    border-radius: 3px;
+    background-image: -webkit-linear-gradient(top, #fdfdfd, #eceef4);
+    background-image: -moz-linear-gradient(top, #fdfdfd, #eceef4);
+    background-image: -o-linear-gradient(top, #fdfdfd, #eceef4);
+    background-image: linear-gradient(to bottom, #fdfdfd, #eceef4);
+    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    max-height: 50vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.search-ac:hover {
+    display: block;
+}
+
+.search-ac li {
+    display: block;
+    padding: 0.1vh;
+}
+
+.search-ac li:first-child {
+    margin-top: -1px;
+}
+
+.search-ac li:first-child:before,
+.search-ac li:first-child:after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    position: absolute;
+    left: 50%;
+    margin-left: -5px;
+    border: 5px outset transparent;
+}
+
+.search-ac li:first-child:before {
+    border-bottom: 5px solid #c4c7d7;
+    top: -11px;
+}
+
+.search-ac li:first-child:after {
+    border-bottom: 5px solid #fdfdfd;
+    top: -10px;
+}
+
+.search-ac li:first-child:hover:before,
+.search-ac li:first-child:hover:after {
+    display: none;
+}
+
+.search-ac li:last-child {
+    margin-bottom: -1px;
+}
+
+.markedLocations {
+    display: block;
+    position: relative;
+    margin: 0 -1px;
+    padding: 1vh;
+    color: #808394;
+    font-weight: 500;
+    text-overflow: ellipsis;
+    text-decoration: none;
+    text-shadow: 0 1px white;
+    border: 1px solid transparent;
+    border-radius: 3px;
+}
+
+.markedLocations:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 2vh;
+    margin-top: -9px;
+    width: 18px;
+    height: 18px;
+}
+
+.markedLocations:hover {
+    cursor: pointer;
+    color: white;
+    text-shadow: 0 -1px rgba(0, 0, 0, 0.3);
+    background: #338cdf;
+    border-color: #2380dd #2179d5 #1a60aa;
+    background-image: -webkit-linear-gradient(top, #59aaf4, #338cdf);
+    background-image: -moz-linear-gradient(top, #59aaf4, #338cdf);
+    background-image: -o-linear-gradient(top, #59aaf4, #338cdf);
+    background-image: linear-gradient(to bottom, #59aaf4, #338cdf);
+    -webkit-box-shadow: inset 0 1px rgba(255, 255, 255, 0.2), 0 1px rgba(0, 0, 0, 0.08);
+    box-shadow: inset 0 1px rgba(255, 255, 255, 0.2), 0 1px rgba(0, 0, 0, 0.08);
+}
+
+.markedLocations>.delete {
+    position: absolute;
+    right: 1vh;
+}
