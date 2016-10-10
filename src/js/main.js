@@ -28,6 +28,13 @@ var snackbarAlert = function(msg) {
 };
 
 /**
+ * error handler for maps API 
+ */
+var mapErrHandler = function(errMsg) {
+    snackbarAlert("Failed to load Google Maps library. Please check you are connected to internet.");
+};
+
+/**
  * init google maps api variables.
  * called after loading map by the script tag
  */

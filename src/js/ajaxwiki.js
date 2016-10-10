@@ -6,7 +6,6 @@ var ajaxWiki = function(searchName, successCallback, errCallback) {
     xhttp.onreadystatechange = function() {
         if (this.readyState == XMLHttpRequest.DONE) {
             if (this.status == 200) {
-                // console.log(this.responseText);
                 var responseJson = JSON.parse(this.responseText);
                 if (responseJson[1].length === 0 || responseJson[2].length === 0 || responseJson[3].length === 0) {
                     errCallback("No wiki page found for " + searchName);

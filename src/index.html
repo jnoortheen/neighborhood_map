@@ -2,12 +2,12 @@
 <html>
 
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
 
     <title>Neighborhood Map Application</title>
-    <link href="app.min.css" rel="stylesheet" />
+    <link href="app.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -15,7 +15,7 @@
         <!--input field-->
         <div class="searchBoxContainer">
             <div class="inpContainer">
-                <input id="searchInput" class="shadowBox" type="search" data-bind="value: searchText, valueUpdate: 'afterkeydown'" />
+                <input id="searchInput" class="shadowBox" type="search" data-bind="value: searchText, valueUpdate: 'afterkeydown'">
             </div>
             <!--left side switch controls -->
             <div class="shadowBox controls leftDiv blueDiv">
@@ -39,17 +39,18 @@
                 <li>
                     <div class="markedLocations" data-bind="click: $parent.gotoMarkerLocation">
                         <span data-bind="text: locationName"></span>
-                        <span class="delete" data-bind="click: $parent.removeMarker">X</span>
+                        <span class="delete" data-bind="click: $parent.removeMarker">
+                            <i class="icon-cross" aria-hidden="true"></i>
+                        </span>
                     </div>
                 </li>
             </ul>
         </div>
     </div>
     <div id="snackbar">Some text some message..</div>
-    <div id="mapdiv">
-    </div>
+    <div id="mapdiv"></div>
     <script src="app.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDAflvhJOU6EjEO98DTBatDcmz7JoNCpJc&libraries=places&callback=initMap" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDAflvhJOU6EjEO98DTBatDcmz7JoNCpJc&libraries=places&callback=initMap" onerror="mapErrHandler()" async defer></script>
 </body>
 
 </html>

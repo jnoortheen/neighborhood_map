@@ -3,15 +3,13 @@
 var ViewModel = function() {
     var self = this;
     // info window template
-    var infoWindowHtmlTemplate = '<div class="infoWindow"><header>%title%</header><section>%content%</section><article><a href="%wikilink%">Wikipedia</a></article></div>';
-
+    var infoWindowHtmlTemplate = '<div class="infoWindow"><header>%title%</header><section>%content%</section><article><a href="%wikilink%" target="_blank">Wikipedia</a></article></div>';
 
     // to on/off neghborhood search
     self.showMarkersDiv = ko.observable(false);
     // bind or unbind google autocomplete functionality
     self.bindGoogleAutoComplete = function() {
         if (self.showMarkersDiv()) {
-            console.log("unbind autocomplete", self.showMarkersDiv());
             // unbind google autocomplete
             autocompleteService.unbindAll();
             google.maps.event.clearInstanceListeners(inpElem);
@@ -44,7 +42,14 @@ var ViewModel = function() {
         if (self.searchText()) {
             var filter = self.searchText().toLowerCase();
             return ko.utils.arrayFilter(self.markers(), function(item) {
-                return item.locationName.toLowerCase().indexOf(filter) !== -1;
+                if (item.locationName.toLowerCase().indexOf(filter) !== -1){
+                    item.setVisible(true);
+                  return true;  
+                } 
+                else {
+                    item.setVisible(false);
+                    return false;
+                }
             })
         } else {
             return self.markers();
@@ -67,7 +72,6 @@ var ViewModel = function() {
     self.addMarker = function(place) {
         // skip this if it is a duplicate
         if (place.place_id in self.placeIds()) {
-            console.log("avoiding duplicates");
             return;
         }
 
@@ -133,9 +137,7 @@ var ViewModel = function() {
      */
     self.savePlaces = ko.computed(function() {
         if (self.markers().length === 0) return;
-        console.log(localStorage.places);
         var places = [];
-        console.log("save to local storage");
         self.markers().forEach(function(marker) {
             places.push(marker.place);
         }, this);
