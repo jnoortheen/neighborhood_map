@@ -73,14 +73,17 @@ var initMap = function() {
     // init autocompleteService
     bindAutoComplete();
 
-    // create all markers retrieved from local storage
+    // create all markers retrieved from local storage else load default locations
+    var places;
     if (localStorage.places) {
-        var places = ko.utils.parseJson(localStorage.getItem('places'));
-        console.log(places);
-        places.forEach(function(place) {
-            vm.addMarker(place);
-        }, this);
+        places = ko.utils.parseJson(localStorage.getItem('places'));
+    } else {
+        places = loadDefLocs();
     }
+
+    places.forEach(function(place) {
+        vm.addMarker(place);
+    }, this);
 };
 
 // function to create marker on the map fetching place from the server and handle possible errors

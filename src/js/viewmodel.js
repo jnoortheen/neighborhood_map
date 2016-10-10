@@ -22,12 +22,15 @@ var ViewModel = function() {
     };
 
     // to on/off functionality to create map marker on click
-    self.enableMapClickMarker = ko.observable(true);
+    // load from saved preference if available
+    self.enableMapClickMarker = ko.observable((!(localStorage.enableMapClickMarker) || (localStorage.enableMapClickMarker === 'true')));
     self.showMapClickSnackBarMsg = function() {
         var elem = document.getElementById("snackbar");
         elem.className = "show";
         elem.innerText = (self.enableMapClickMarker() ? "Enabled" : "Disabled") + " creation of marker on map click";
         setTimeout(function() { elem.className = elem.className.replace("show", ""); }, 3000);
+        // save preference to localStorage
+        localStorage.enableMapClickMarker = self.enableMapClickMarker();
     };
 
     // list of marker objects to show on the sidebar
@@ -96,8 +99,16 @@ var ViewModel = function() {
             infoWindow.setContent(this.content);
             infoWindow.open(map, this);
         };
+        marker.animatedInfo = function() {
+            var that = this;
+            that.setAnimation(google.maps.Animation.BOUNCE);
+            setTimeout(function() {
+                that.setAnimation(null)
+                that.showInfo();
+            }, 1000);
+        };
         self.markers.push(marker);
-        google.maps.event.addListener(marker, 'click', marker.showInfo);
+        google.maps.event.addListener(marker, 'click', marker.animatedInfo);
     };
 
     // remove a location marker on clicking the delete button
@@ -109,10 +120,7 @@ var ViewModel = function() {
     // zoom to the selected marker position
     self.gotoMarkerLocation = function(marker) {
         gotoPlace(marker.place);
-        marker.setAnimation(google.maps.Animation.BOUNCE);
-        setTimeout(function() {
-            marker.setAnimation(null)
-        }, 1000);
+        marker.animatedInfo();
     };
 
     // clear search input

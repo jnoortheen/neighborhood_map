@@ -16,6 +16,7 @@ var fontPaths = ['src/fonts/*.*'];
 // files must be in the order that they are getting loaded
 var jsPaths = [
     'node_modules/knockout/build/output/knockout-latest.debug.js',
+    'src/js/default_locations.js',
     'src/js/viewmodel.js',
     'src/js/main.js',
     'src/js/*.js'
