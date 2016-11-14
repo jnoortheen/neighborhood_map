@@ -1,5 +1,5 @@
 #Neighborhood Map:
-    A responsive map application using Google Maps JS API.
+A responsive map application using Google Maps JS API.
 
 ##Use:
 -   search any location using google autocomplete service.
